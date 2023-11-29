@@ -120,7 +120,7 @@ init_remote_filesystems() {
 	nfs_options="proto=tcp,port=2049,rw,all_squash,anonuid=1001,anongid=1001"
 	rasppi_serial="$( serial )"
 	if [ -z $NAS_IP ]; then
-		NAS_IP="192.168.133.21"
+		NAS_IP="192.168.10.218"
 	fi
 	while true; do
 		input_nas_ip=$( input "Enter your NAS IP" $NAS_IP )
@@ -162,8 +162,8 @@ init_remote_filesystems() {
 	echo "console=serial0,115200 console=tty1 root=/dev/nfs nfsroot=$NAS_IP:$nas_volume/$pxe_folder/$hostname, rw ip=dhcp elevator=deadline rootwait cgroup_memory=1 cgroup_enable=memory" | asroot tee "$bootfs/cmdline.txt"
 
 	# configure EEPROM firmware
-	firmware_folder="/lib/firmware/raspberrypi/bootloader/stable/"
-	firmware=$( ls -r /lib/firmware/raspberrypi/bootloader/stable/pieeprom-2022-* | head -1 )
+	firmware_folder="/lib/firmware/raspberrypi/bootloader-2711/stable/"
+	firmware=$( ls -r /lib/firmware/raspberrypi/bootloader-2711/stable/pieeprom-2023-* | head -1 )
 	cp $firmware pieeprom.bin
 	cat >bootconf.txt << EOL
 [all]
