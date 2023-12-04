@@ -152,7 +152,7 @@ init_remote_filesystems() {
 	fi
 	bootfs=$tftpbootfs/$rasppi_serial
 	asroot mkdir -p $bootfs
-	asroot rsync -xa --delete --info=progress2 /boot/* $bootfs/
+	asroot rsync -xa --delete --info=progress2 /boot/firmware/* $bootfs/
 
 	# configure remote filesystem table
 	asroot sed -i.pxe.bak ' /boot \| \/ /d' "$rootfs/etc/fstab"
