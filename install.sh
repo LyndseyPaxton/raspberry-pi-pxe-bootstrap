@@ -32,6 +32,7 @@ bootstrap() {
 	update_system
 	disable_wifi
 	disable_swap
+ 	install_resolvconf
 	switch_network_daemon
 	init_remote_filesystems
 }
@@ -41,8 +42,6 @@ update_system() {
 	silent_exec asroot apt-get update
 	println "Done"
 	asroot apt-get -y dist-upgrade
-        # This package is required to use the systemd-resolved service
-	asroot apt-get -y install resolvconf
  
 	# Screen makes sense to install for most headless systems
 	asroot apt-get -y install screen
@@ -51,6 +50,12 @@ update_system() {
 	fi
 }
 
+install_resolvconf() {
+	print "Installing resolvconf... "
+        # This package is required to use the systemd-resolved service
+	asroot apt-get -y install resolvconf
+ 	println "Done"
+}
 install_unattended_upgrades() {
 	asroot apt-get -y install unattended-upgrades apt-config-auto-update
 	# stay with defaults (security updates only, no automatic reboot)
