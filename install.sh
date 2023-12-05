@@ -86,11 +86,11 @@ disable_swap() {
 }
 
 switch_network_daemon() {
-	stop_service "dhcpcd"
-	disable_service "dhcpcd"
-	enable_service "systemd-networkd"
-	enable_service "systemd-resolved"
-	start_service "systemd-resolved"
+	#stop_service "dhcpcd"
+	#disable_service "dhcpcd"
+	#enable_service "systemd-networkd"
+	#enable_service "systemd-resolved"
+	#start_service "systemd-resolved"
 	link_resolve_stub
 	configure_network
 	restart_service "systemd-networkd"
