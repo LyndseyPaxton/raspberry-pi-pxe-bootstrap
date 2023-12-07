@@ -91,9 +91,9 @@ switch_network_daemon() {
 	#enable_service "systemd-networkd"
 	#enable_service "systemd-resolved"
 	#start_service "systemd-resolved"
-	link_resolve_stub
+	#link_resolve_stub
 	configure_network
-	restart_service "systemd-networkd"
+	#restart_service "systemd-networkd"
 	cleanup_system
 	if [ "$(ask_bool 'Install Tailscale?' "true")" = "true" ]; then
 		install_tailscale
