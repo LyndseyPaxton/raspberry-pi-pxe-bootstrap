@@ -32,8 +32,8 @@ bootstrap() {
 	update_system
 	disable_wifi
 	disable_swap
- 	install_resolvconf
-	switch_network_daemon
+ 	#install_resolvconf
+	#switch_network_daemon
 	init_remote_filesystems
 }
 
