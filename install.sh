@@ -164,6 +164,13 @@ init_remote_filesystems() {
 
 	# configure remote filesystem table
 	asroot sed -i.pxe.bak ' /boot \| \/ /d' "$rootfs/etc/fstab"
+
+	# Delete and recreate /etc/fstab
+    	asroot rm -f "$rootfs/etc/fstab"
+
+    	# Add /proc mounting line
+    	echo "proc /proc proc defaults 0 0" | asroot tee "$rootfs/etc/fstab"
+ 
 	echo  "$NAS_IP:$nas_volume/$tftp_folder/$rasppi_serial /boot nfs defaults,proto=tcp 0 0" | asroot tee -a "$rootfs/etc/fstab"
 
 	# configure network boot kernel options (add cgroup stuff already for Kubernetes)
